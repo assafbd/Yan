@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+
+
+<html dir="rtl" lang="ar">
+
+<head>
+
+<style>
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #F87DA9;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #86e3ce, #d0e6a5);
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+.container .title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+
+.container .title::before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 30px;
+  background: linear-gradient(135deg, #86e3ce, #d0e6a5);
+  left: 0;
+  bottom: 0;
+}
+
+.container form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box {
+  margin-bottom: 15px;
+  width: calc(100% / 2-20px);
+
+}
+
+.user-details .input-box .details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding-left: 15px;
+  font-size: 16px;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+  border-color: #d0e6a5;
+}
+
+form .gender-details .gender-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+form .gender-details .category {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin: 14px 0;
+}
+
+.gender-details .category label {
+  display: flex;
+  align-items: center;
+}
+
+.gender-details .category .dot {
+  height: 18px;
+  width: 18px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two,
+#dot-3:checked ~ .category label .three {
+  border-color: #a8a7a7;
+  background: #d0e6a5;
+}
+
+form input[type="radio"] {
+ 
+}
+
+form .button {
+  height: 45px;
+  margin: 45px 0;
+   border-color: $blue;
+  color: #fff;
+  box-shadow: 0 0 40px 40px $blue inset, 0 0 0 0 $blue;
+  transition: all 150ms ease-in-out;
+  
+  &:hover {
+    box-shadow: 0 0 10px 0 $blue inset, 0 0 10px 4px $blue;
+}
+
+// Basic Button Style
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid $red;
+  border-radius: 0.6em;
+  color: $red;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    outline: 0;
+  }
+}
+
+form .button input {
+  text-align: center ;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #86e3ce, #d0e6a5);
+   border-color: $blue;
+  color: #fff;
+  box-shadow: 0 0 40px 40px $blue inset, 0 0 0 0 $blue;
+  transition: all 150ms ease-in-out;
+  
+  &:hover {
+    box-shadow: 0 0 10px 0 $blue inset, 0 0 10px 4px $blue;
+}
+
+form .button input:hover {
+  background: linear-gradient(-135deg, #86e3ce, #d0e6a5);
+}
+
+@media (max-width: 584px) {
+  .container {
+    max-width: 100%;
+  }
+
+  form .user-details .input-box {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  form .gender-details .category {
+    width: 100%;
+  }
+
+  .container form .user-details {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  .user-details::-webkit-scrollbar {
+    width: 0;
+  }
+  
+    
+}
+
+</style>
+
+  <div class="form-container">
+
+  <title>Final Automation Project Yulia</title>
+  
+  <script>
+function sendDetails() {
+alert('תודה רבה על פנייתך יוליה תיצור עמך קשר');
+}
+
+function popUpInstegramDetails() {
+alert('לחץ פה על מנת לראות עוד תמונות  וביו של יוליה');
+}
+</script>
+</head>
+
+<body>
+
+<h1>יולי אימונים אישיים</h1>
+
+<h3>אימונים לחיים מאושרים ובריאים, תירשמו עכשיו !!!</h3>
+
+<img src="Yulia1.png" alt="Yalia personal trainer" width="400" height="300">
+<img src="Yulia2.jpg" alt="Yalia personal trainer" width="400" height="300">
+<br>
+
+<p style="text-align: center;
+        font-size: 17px !important;
+        color: #555 !important;
+        letter-spacing: 1.3px;
+		  max-width: 950px;
+		" >מטרה היא חלום שלוקחים ברצינות" מאמנת כושר עם 5 שנות תוצאות האימונים כוללים תפריט תזונה מותאם לך אישית, ליווי צמוד 24
+/7 ואימון לאורח חיים בריא. ביחד נמצא מה הגורם שמעכב אותך מלרדת במשקל ונשחרר את זה דרך תהליך שנכון עבורך עם טיפים לאורך כל הדרך. כמו כן אני עוש
+ה לך שקילה שבועית עם מכשיר מיוחד שמודד לך את האחוז שומן,מסת שריר, ושומן ביטני
+. בנוסף ציוד אפקטיבי לאימון הפונה לסגנונת מגוונים: אירובי, אימוני כוח, עיצוב וחיטוב הגוף. מחכה לפגוש אותך ולעזור לך להגיע 
+למטרות שתמיד חלמת. טיפ ראשוני ממני אליך ב❤ להורדת שומן ביטני 
+: לשתות חצי לימון סחוט כל בוקר. אני מאמינה שכל אדם יכול להמשיך הרבה מעבר לנקודה בה הוא חושב , שהוא כבר לא יכול יותר</p>
+
+<br>
+<form>
+<h4>מהו גילך?</h4>
+
+  <p>
+    <input type="radio" id="test1" name="radio-group" checked>
+    <label for="test1">15-25</label>
+  </p>
+  <p>
+    <input type="radio" id="test2" name="radio-group">
+    <label for="test2">25-35</label>
+  </p>
+  <p>
+    <input type="radio" id="test3" name="radio-group">
+    <label for="test3">45-80</label>
+  </p>
+  
+  <br> 
+  <br>   
+<div class="checkboxes">
+  <label style="display: inline-block">
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> התאמנתי בעבר בחדר כושר</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> יש לי אישור מרופא להתאמן בחדר כושר</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> אינני חולה במחלות לב או ריאה</label><br><br>
+</div> 
+  
+  
+   <label for="cars">בחר את סוג האימון המועדף:</label>
+  <select name="cars" id="cars">
+    <option value="volvo"> אימונים אישיים</option>
+    <option value="saab">אימוני CROSS FIT</option>
+    <option value="opel">אימון בקבוצות</option>
+    <option value="audi">אימון לגיל הזהב</option>
+  </select>
+  <br><br>
+ 
+   <label for="fname">שם פרטי:</label>
+  <input type="text" id="fname" name="fname" placeholder="הכנס את שמך" ><br><br>
+  <label for="lname">שם משפחה:</label>
+  <input  type="text" id="lname" name="lname" placeholder="הכנס את שם משפחתך"><br><br>
+   <label for="lname">טלפון:</label>
+  <input type="text" id="lname" name="lname" placeholder="הכנס טלפון"><br><br> 
+ <button class="button" onClick=sendDetails()> שלח פרטים</button>
+
+
+  <img style="height: 24px" src="Instagram.png" onmouseover=popUpInstegramDetails()>
+
+
+</form>
+<a href="https://www.w3schools.com">Visit W3Schools</a>
+
+<template>
+  <h2>Flower</h2>
+  <img src="img_white_flower.jpg" width="214" height="204">
+</template>
+ 
+ </div>
+
+
+
+</body>
+</html>
